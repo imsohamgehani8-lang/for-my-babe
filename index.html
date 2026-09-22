@@ -1,1 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why You Are My Babe, Not A Homeboy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#070508',
+                        cardBg: 'rgba(20, 14, 24, 0.85)',
+                        roseGlow: '#f43f5e',
+                        amberGlow: '#f59e0b',
+                        pinkNeon: '#ff2a85',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2.5s infinite ease-in-out',
+                        'float-subtle': 'floatSubtle 4s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(244, 63, 94, 0.25)' },
+                            '50%': { boxShadow: '0 0 35px rgba(244, 63, 94, 0.65)' },
+                        },
+                        floatSubtle: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        body {
+            background-color: #070508;
+            color: #f4f4f5;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
 
+        .rose-border {
+            border: 1px solid rgba(244, 63, 94, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rose-border:hover {
+            border-color: rgba(244, 63, 94, 0.8);
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.35);
+        }
+
+        .glass-card {
+            background: rgba(20, 14, 24, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 40;
+        }
+
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #f43f5e;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.9);
+            border: 2px solid #ffffff;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative pb-20 px-4 selection:bg-rose-500 selection:text-white">
+
+    <canvas id="particleCanvas"></canvas>
+
+    <header class="relative pt-12 pb-8 max-w-4xl mx-auto text-center z-10">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono font-semibold mb-6 animate-pulse-glow">
+            <i class="fa-solid fa-heart text-rose-500 animate-bounce"></i>
+            <span>REAL TALK & PUBLIC APOLOGY</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white mb-4 uppercase leading-tight">
+            THE HOMEBOYS: <span class="text-zinc-500 line-through">THE GUYS 👊</span> <br/>
+            YOU: <span class="bg-gradient-to-r from-rose-400 via-pink-500 to-amber-300 bg-clip-text text-transparent">MY BABE FOREVER 💋</span>
+        </h1>
+
+        <p class="text-zinc-300 text-sm sm:text-base font-medium max-w-xl mx-auto leading-relaxed mb-6">
+            Calling you "homegirl" in front of my friends was a total slip of my tongue. You aren't one of the guys—you're my girl, my favorite person, and in a league of your own. Here is the real difference:
+        </p>
+
+        <div class="p-3.5 rounded-2xl glass-card rose-border text-xs sm:text-sm text-rose-200 font-mono flex items-center justify-center gap-2.5 shadow-lg max-w-md mx-auto">
+            <i class="fa-solid fa-crown text-amber-400 text-base"></i>
+            <span>STATUS: MY BABE (TOP TIER & UNTOUCHABLE)</span>
+        </div>
+    </header>
+
+    <section class="max-w-4xl mx-auto my-8 z-10 relative">
+        <div class="text-center mb-8">
+            <h2 class="text-xs font-mono uppercase tracking-widest text-rose-400">THE UNFILTERED BREAKDOWN</h2>
+            <p class="text-2xl font-bold text-white">How I Treat The Homies vs. How I Treat You</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Side: The Homeboys -->
+            <div class="glass-card p-6 rounded-2xl border border-zinc-800 space-y-4">
+                <div class="flex items-center gap-3 pb-3 border-b border-zinc-800">
+                    <div class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-500 text-lg">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-zinc-400">The Homeboys / The Guys</h3>
+                        <p class="text-xs font-mono text-zinc-600">Standard Homie Code</p>
+                    </div>
+                </div>
+
+                <ul class="space-y-3.5 text-xs sm:text-sm text-zinc-400 font-medium">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-handshake text-zinc-600 text-sm mt-1"></i>
+                        <span>Dap up, fist bumps, & casual head nods.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-comments text-zinc-600 text-sm mt-1"></i>
+                        <span>Casual roast sessions, talking sports, games, & memes.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-utensils text-zinc-600 text-sm mt-1"></i>
+                        <span>Splitting the bill down to the cent or paying for their own food.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-clock text-zinc-600 text-sm mt-1"></i>
+                        <span>Hanging out whenever we got free time—no rush.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-shield text-zinc-600 text-sm mt-1"></i>
+                        <span>Keeping walls up and keeping conversations surface-level.</span>
+                    </li>
+                </ul>
+
+                <div class="pt-2 text-center text-[10px] font-mono text-zinc-600 uppercase tracking-widest border-t border-zinc-800/50">
+                    // RESULT: JUST ONE OF THE GUYS
+                </div>
+            </div>
+
+            <!-- Right Side: YOU (MY BABE) -->
+            <div class="glass-card p-6 rounded-2xl rose-border space-y-4 bg-gradient-to-b from-rose-500/10 via-pink-950/20 to-transparent shadow-xl">
+                <div class="flex items-center gap-3 pb-3 border-b border-rose-500/30">
+                    <div class="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 text-lg shadow-inner">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            YOU (MY BABE) <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-500 text-white font-mono font-extrabold uppercase">MY GIRL</span>
+                        </h3>
+                        <p class="text-xs font-mono text-rose-300">My Priority & Whole Heart</p>
+                    </div>
+                </div>
+
+                <ul class="space-y-3.5 text-xs sm:text-sm text-zinc-200 font-medium">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-kiss-wink-heart text-pink-400 text-base mt-0.5 animate-pulse"></i>
+                        <span class="text-white font-semibold">Unlimited kisses, forehead kisses, & non-stop soft affection.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-briefcase text-amber-400 text-sm mt-1"></i>
+                        <span class="text-amber-200 font-semibold"><strong class="text-white">Hardworking & Ambitious:</strong> Super independent, grinding daily, and inspiring me to be better.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-wine-glass text-rose-400 text-sm mt-1"></i>
+                        <span>Planned date nights, dinners on me, & treating you like a queen.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-moon text-rose-400 text-sm mt-1"></i>
+                        <span>Late-night deep chats, instant fast replies, & opening up my soft side.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-gem text-pink-400 text-sm mt-1"></i>
+                        <span class="text-rose-200 font-bold">My absolute top priority, my safe place, & my whole vibe.</span>
+                    </li>
+                </ul>
+
+                <div class="pt-2 text-center text-[10px] font-mono text-rose-400 uppercase tracking-widest font-bold border-t border-rose-500/20">
+                    // RESULT: UNTOUCHABLE #1 SPOT
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto my-12 z-10 relative">
+        <div class="text-center mb-8">
+            <h2 class="text-xs font-mono uppercase tracking-widest text-rose-400">REAL TALK</h2>
+            <p class="text-xl font-bold text-white">Tap Each Card to See Why You're Built Different</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Card 1 -->
+            <div class="perspective-1000 h-48 cursor-pointer" onclick="flipCard(this)">
+                <div class="card-inner relative w-full h-full transform-style-3d rounded-2xl">
+                    <div class="absolute inset-0 glass-card p-5 rounded-2xl rose-border flex flex-col justify-between backface-hidden">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-solid fa-bolt text-amber-400 text-xl"></i>
+                            <span class="text-[10px] font-mono text-zinc-500">TAP TO FLIP</span>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-white">Hardworking & Driven</h3>
+                            <p class="text-xs text-zinc-400 mt-1">Your hustle & grind...</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 glass-card p-5 rounded-2xl border border-rose-500 bg-gradient-to-br from-rose-900/80 to-zinc-950 flex flex-col justify-center rotate-y-180 backface-hidden">
+                        <p class="text-xs text-zinc-200 leading-relaxed font-medium">
+                            "Watching you work hard and chase your goals makes me respect you so much. You're independent, ambitious, and push me to step up."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="perspective-1000 h-48 cursor-pointer" onclick="flipCard(this)">
+                <div class="card-inner relative w-full h-full transform-style-3d rounded-2xl">
+                    <div class="absolute inset-0 glass-card p-5 rounded-2xl rose-border flex flex-col justify-between backface-hidden">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-solid fa-kiss-wink-heart text-pink-400 text-xl"></i>
+                            <span class="text-[10px] font-mono text-zinc-500">TAP TO FLIP</span>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-white">No Homeboy Treatment</h3>
+                            <p class="text-xs text-zinc-400 mt-1">The affection you get...</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 glass-card p-5 rounded-2xl border border-rose-500 bg-gradient-to-br from-rose-900/80 to-zinc-950 flex flex-col justify-center rotate-y-180 backface-hidden">
+                        <p class="text-xs text-zinc-200 leading-relaxed font-medium">
+                            "None of the homeboys get my arms wrapped around them, soft forehead kisses, or late-night deep talks. You hold a place no friend ever could."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="perspective-1000 h-48 cursor-pointer" onclick="flipCard(this)">
+                <div class="card-inner relative w-full h-full transform-style-3d rounded-2xl">
+                    <div class="absolute inset-0 glass-card p-5 rounded-2xl rose-border flex flex-col justify-between backface-hidden">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-solid fa-shield-heart text-rose-400 text-xl"></i>
+                            <span class="text-[10px] font-mono text-zinc-500">TAP TO FLIP</span>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-white">My Safe Place</h3>
+                            <p class="text-xs text-zinc-400 mt-1">Where I open up...</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 glass-card p-5 rounded-2xl border border-rose-500 bg-gradient-to-br from-rose-900/80 to-zinc-950 flex flex-col justify-center rotate-y-180 backface-hidden">
+                        <p class="text-xs text-zinc-200 leading-relaxed font-medium">
+                            "With the guys, I keep my guard up. With you, I drop all my walls. You are the only person who gets my complete soft spot."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="perspective-1000 h-48 cursor-pointer" onclick="flipCard(this)">
+                <div class="card-inner relative w-full h-full transform-style-3d rounded-2xl">
+                    <div class="absolute inset-0 glass-card p-5 rounded-2xl rose-border flex flex-col justify-between backface-hidden">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-solid fa-face-flushed text-amber-400 text-xl"></i>
+                            <span class="text-[10px] font-mono text-zinc-500">TAP TO FLIP</span>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-white">My Stupid Slip</h3>
+                            <p class="text-xs text-zinc-400 mt-1">Why I said it...</p>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 glass-card p-5 rounded-2xl border border-rose-500 bg-gradient-to-br from-rose-900/80 to-zinc-950 flex flex-col justify-center rotate-y-180 backface-hidden">
+                        <p class="text-xs text-zinc-200 leading-relaxed font-medium">
+                            "Calling you 'homegirl' in front of the guys was a careless slip of my tongue. Next time we're around everyone, I'll make sure your place is 100% clear."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-md mx-auto my-10 z-10 relative">
+        <div class="glass-card p-6 sm:p-8 rounded-3xl border border-zinc-800 text-center shadow-xl">
+            <h3 class="text-lg font-bold text-white mb-1">How Mad Are You Right Now?</h3>
+            <p class="text-xs text-zinc-400 mb-6">Rate my mistake on the doghouse slider:</p>
+
+            <div class="mb-6 px-2">
+                <input type="range" id="doghouseSlider" min="1" max="10" value="7" class="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer" oninput="updateDoghouse(this.value)">
+                <div class="flex justify-between text-[10px] font-mono text-zinc-500 mt-3">
+                    <span>1: Annoyed</span>
+                    <span>5: Doghouse</span>
+                    <span>10: Dinner & Kisses</span>
+                </div>
+            </div>
+
+            <div id="doghouseText" class="p-4 rounded-xl bg-zinc-950 border border-rose-500/40 text-rose-300 text-xs font-mono font-semibold mb-6 shadow-inner">
+                "Yeah, I definitely owe you dinner, a date night, and a real long kiss, babe."
+            </div>
+
+            <button id="lockInBtn" onclick="triggerApologyModal()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 text-white font-black text-sm uppercase tracking-wider shadow-xl shadow-rose-500/25 transition-all duration-300 transform active:scale-95 hover:brightness-110 flex items-center justify-center gap-2">
+                <span>💋 SEND ME KISSES & FORGIVE ME 💋</span>
+            </button>
+        </div>
+    </section>
+
+    <div id="apologyModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden transition-opacity duration-300 opacity-0">
+        <div class="glass-card p-6 sm:p-8 rounded-3xl rose-border max-w-sm w-full text-center relative bg-gradient-to-b from-rose-950/90 via-zinc-950 to-zinc-950 shadow-2xl transform scale-90 transition-transform duration-300" id="modalContainer">
+            <div class="w-16 h-16 mx-auto rounded-full bg-rose-500/20 border border-rose-500/50 flex items-center justify-center text-rose-400 text-2xl mb-4 animate-bounce">
+                <i class="fa-solid fa-kiss-wink-heart"></i>
+            </div>
+
+            <h3 class="text-xl font-black text-white mb-2 uppercase">YOU ARE MY BABE FOREVER</h3>
+            
+            <p class="text-xs text-zinc-300 leading-relaxed mb-6 font-medium">
+                I messed up with my words, but you are my hardworking, stunning girl and my absolute favorite person. Next time we're around the guys, everybody will know it!
+            </p>
+
+            <button onclick="closeModal()" class="w-full py-3.5 rounded-xl bg-rose-500 text-white font-extrabold text-xs uppercase tracking-wider hover:bg-rose-600 transition-all active:scale-95">
+                I Forgive You, Babe ❤️
+            </button>
+        </div>
+    </div>
+
+    <footer class="text-center py-6 text-zinc-600 text-[10px] font-mono relative z-10">
+        // EXCLUSIVELY FOR MY BABE. NEVER JUST ONE OF THE HOMEBOYS.
+    </footer>
+
+    <script>
+        function flipCard(cardEl) {
+            const inner = cardEl.querySelector('.card-inner');
+            inner.classList.toggle('rotate-y-180');
+        }
+
+        function updateDoghouse(val) {
+            const text = document.getElementById('doghouseText');
+            const responses = {
+                1: "Slightly annoyed! I still owe you a sweet treat.",
+                2: "Okay, I see you! I'm bringing your favorite coffee.",
+                3: "Got it! Extra hugs and reassurance coming up.",
+                4: "I crossed a line with my words. Taking full accountability.",
+                5: "5/10 Doghouse status! Let me take you out to dinner.",
+                6: "You have every right to be upset. I'm stepping up.",
+                7: "Yeah, I definitely owe you dinner, a date night, and a real long kiss, babe.",
+                8: "Red alert! I'm showing up with flowers, kisses, and food.",
+                9: "I deserve all the side-eye. You're my girl forever.",
+                10: "10/10 Doghouse! I'm on one knee begging for forgiveness, babe!"
+            };
+            text.innerText = responses[val] || "I owe you big time, babe!";
+        }
+
+        function triggerApologyModal() {
+            const modal = document.getElementById('apologyModal');
+            const container = document.getElementById('modalContainer');
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                container.classList.remove('scale-90');
+                container.classList.add('scale-100');
+            }, 10);
+
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#f43f5e', '#ff2a85', '#ffffff', '#e11d48']
+            });
+
+            spawnHearts();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('apologyModal');
+            const container = document.getElementById('modalContainer');
+
+            modal.classList.add('opacity-0');
+            container.classList.add('scale-90');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class HeartParticle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 20;
+                this.size = Math.random() * 12 + 6;
+                this.speedY = Math.random() * 1.8 + 0.8;
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.swing = Math.random() * 0.05;
+                this.angle = Math.random() * Math.PI * 2;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.angle += this.swing;
+                this.x += Math.sin(this.angle) * 0.8;
+
+                if (this.y < -20) {
+                    this.y = canvas.height + 20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#f43f5e';
+                ctx.translate(this.x, this.y);
+                
+                ctx.beginPath();
+                const topCurveHeight = this.size * 0.3;
+                ctx.moveTo(0, topCurveHeight);
+                ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        function spawnHearts() {
+            for (let i = 0; i < 30; i++) {
+                particles.push(new HeartParticle());
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.onload = function() {
+            spawnHearts();
+            animateCanvas();
+        }
+    </script>
+</body>
+</html>
